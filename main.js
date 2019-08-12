@@ -56,7 +56,7 @@ const next_binary_number = (input) => {
     // 1,1 -> 1,0,0
     if (input[n-1] == 1 && input[n-2] == 1) {
         
-        // iterate again and change all 1 to 0 until finds 0 and change 0 to 1
+        // iterate and change all 1 to 0 until finds 0 and change 0 to 1
         for (let j = n-1; j >=0; j--){
             
             if (input[j] == 0) {
