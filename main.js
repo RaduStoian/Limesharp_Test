@@ -52,42 +52,41 @@ const reformat = (string) => {
 
 const next_binary_number = (input) => {
     let n = input.length;
-    for (let i = n-1; i >= 0; i--) {
-
-        // 1,1 -> 1,0,0
-        if (input[i] == 1 && input[i-1] == 1) {
+    
+    // 1,1 -> 1,0,0
+    if (input[n-1] == 1 && input[n-2] == 1) {
+        
+        // iterate again and change all 1 to 0 until finds 0 and change 0 to 1
+        for (let j = n-1; j >=0; j--){
             
-            // iterate again and change all 1 to 0 until finds 0 and change 0 to 1
-           for (let j = n-1; j >=0; j--){
-               
-               if (input[j] == 0) {
-                   input[j] = 1;
-                   return input;
-                }
+            if (input[j] == 0) {
+                input[j] = 1;
+                return input;
+            }
 
-                if (input[j] == 1) {
-                   input[j] = 0;
-                }
-           }
-
-            // if no 0 was found, add a 1.
-            input.splice(0, 0, 1)
-            break;
+            if (input[j] == 1) {
+                input[j] = 0;
+            }
         }
 
-        // 0,1 -> 1,0
-        if (input[i] == 1 && input[i-1] == 0) {
-            input[i] = 0;
-            input[i-1] = 1;
-            break;
-        }
-            // 0 -> 1
-        if (input[i] == 0) {
-            input[i] = 1;
-            break;
-        }
+        // if no 0 was found, add a 1.
+        input.splice(0, 0, 1)
+        return input;
     }
-    return input;
+
+    // 0,1 -> 1,0
+    if (input[n-1] == 1 && input[n-2] == 0) {
+        input[n-1] = 0;
+        input[n-2] = 1;
+        return input;
+    }
+        // 0 -> 1
+    if (input[n-1] == 0) {
+        input[n-1] = 1;
+        return input;
+    }
+
+    return(input);
 }
 // next_binary_number([1,0,1]); returns [ 1, 1, 0 ]
 // next_binary_number([1,1,0]); returns [ 1, 1, 1 ]
